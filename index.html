@@ -245,17 +245,17 @@ This little website in the corner of the internet is where I share my adventures
 <script>
 const counter = document.getElementById("visitor-count");
 
+const workerURL = "https://visitor-counter.aji-karnom.workers.dev/";
+
 if (localStorage.getItem("diyaVisited")) {
 
-    // Already counted once
-    fetch("https://visitor-counter.aji-karnom.workers.dev/?count=no")
+    fetch(workerURL)
         .then(r => r.text())
         .then(n => counter.textContent = n.padStart(5,"0"));
 
 } else {
 
-    // First visit from this browser
-    fetch("https://visitor-counter.aji-karnom.workers.dev/?count=yes")
+    fetch(workerURL + "?count=yes")
         .then(r => r.text())
         .then(n => {
             counter.textContent = n.padStart(5,"0");
