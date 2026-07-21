@@ -248,14 +248,14 @@ const counter = document.getElementById("visitor-count");
 if (localStorage.getItem("diyaVisited")) {
 
     // Already counted once
-    fetch("https://visitor-counter.aji-karnom.workers.dev/")
+    fetch("https://visitor-counter.aji-karnom.workers.dev/?count=no")
         .then(r => r.text())
         .then(n => counter.textContent = n.padStart(5,"0"));
 
 } else {
 
     // First visit from this browser
-    fetch("https://YOUR-WORKER-URL.workers.dev?count=yes")
+    fetch("https://visitor-counter.aji-karnom.workers.dev/?count=yes")
         .then(r => r.text())
         .then(n => {
             counter.textContent = n.padStart(5,"0");
