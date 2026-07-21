@@ -236,11 +236,16 @@ This little website in the corner of the internet is where I share my adventures
 
 <footer>
 
-<p>
-  🌼 Thanks for coming! You are visitor number
-  <img src="https://www.hitwebcounter.com/counter/counter.php?page=21511084&style=0006&nbdigits=5&type=page">
-  .
-</p>
+<script>
+fetch("https://visitor-counter.aji-karnom.workers.dev/")
+  .then(response => response.text())
+  .then(count => {
+      document.getElementById("visitor-count").textContent = count.padStart(5, "0");
+  })
+  .catch(() => {
+      document.getElementById("visitor-count").textContent = "?????";
+  });
+</script>
     
 
 </footer>
