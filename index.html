@@ -243,14 +243,26 @@ This little website in the corner of the internet is where I share my adventures
 
 </div>
 <script>
-fetch("https://visitor-counter.aji-karnom.workers.dev/")
-  .then(response => response.text())
-  .then(count => {
-      document.getElementById("visitor-count").textContent = count.padStart(5, "0");
-  })
-  .catch(() => {
-      document.getElementById("visitor-count").textContent = "?????";
-  });
+const counter = document.getElementById("visitor-count");
+
+if (localStorage.getItem("diyaVisited")) {
+
+    // Already counted once
+    fetch("https://visitor-counter.aji-karnom.workers.dev?count=no")
+        .then(r => r.text())
+        .then(n => counter.textContent = n.padStart(5,"0"));
+
+} else {
+
+    // First visit from this browser
+    fetch("https://YOUR-WORKER-URL.workers.dev?count=yes")
+        .then(r => r.text())
+        .then(n => {
+            counter.textContent = n.padStart(5,"0");
+            localStorage.setItem("diyaVisited","yes");
+        });
+
+}
 </script>
 </body>
 
